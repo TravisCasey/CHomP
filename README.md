@@ -1,10 +1,7 @@
 # CHomP -- Computational Homology Project software
 
-[![Build Status](https://travis-ci.org/shaunharker/CHomP.svg?branch=master)](https://travis-ci.org/shaunharker/CHomP)[![Coverage Status](https://coveralls.io/repos/shaunharker/CHomP/badge.svg?branch=master)](https://coveralls.io/r/shaunharker/CHomP?branch=master)
 
-
-
-## Overview 
+## Overview
 This software is a tool for computational homology for both cellular complexes and induced homology on maps. It is based on discrete Morse theory. It is used to compute Conley indices in the [Conley-Morse-Database](https://github.com/shaunharker/conley-morse-database) project.
 
 See "LICENSE" for license details.
@@ -117,7 +114,7 @@ Example: _(Tetrahedron along with an isolated vertex)_
 
     chomp-matrix ./examples/torus.mat
 
-File format: The format is in terms of a sparse matrix representation of the boundary maps $d_n : C_{n+1} \to C_{n}$ for $n = 0 \cdots D-1$. The file has $D$ sections, corresponding to each map $d_0$, $d_1$, in turn. Each section begins with a line `n`, where $n$ is the index of the boundary map. Then follow lines indicating the non-zero entries for the incidence matrix for $d_n$. In particular each line is a triple `i j k` indicating that $d_{n}_{i,j} = k$, i.e. the jth cell in $C_{n+1}$ has in its boundary $k$ times the cell $i$ in $C_{n}$. It is allowed to include zero entries in the matrix explicitly, and it necessary for the software to learn of any cells which are not in the image of a boundary operator. 
+File format: The format is in terms of a sparse matrix representation of the boundary maps $d_n : C_{n+1} \to C_{n}$ for $n = 0 \cdots D-1$. The file has $D$ sections, corresponding to each map $d_0$, $d_1$, in turn. Each section begins with a line `n`, where $n$ is the index of the boundary map. Then follow lines indicating the non-zero entries for the incidence matrix for $d_n$. In particular each line is a triple `i j k` indicating that $d_{n}_{i,j} = k$, i.e. the jth cell in $C_{n+1}$ has in its boundary $k$ times the cell $i$ in $C_{n}$. It is allowed to include zero entries in the matrix explicitly, and it necessary for the software to learn of any cells which are not in the image of a boundary operator.
 
 Example: _(Torus; 1 2d-cell, 2 1d-cells, and 1 1d cell)_
 
