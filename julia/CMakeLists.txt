@@ -36,7 +36,8 @@ set(LIBS ${LIBS}
          JlCxx::cxxwrap_julia
 )
 
-set(TARGETS Fieldjl)
+set(TARGETS Fieldjl
+            Ringjl)
 
 foreach(TARGET ${TARGETS})
     add_library(${TARGET} SHARED ${TARGET}.cpp)
