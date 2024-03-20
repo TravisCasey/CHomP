@@ -35,7 +35,7 @@ public:
 	Zp & operator += ( const Zp & rhs );
   Zp & operator *= ( const Zp & rhs );
   bool operator < ( const Zp & rhs ) const { return false; } // :(  Bezout in SmithNormalForm requires this
-                                             // That needs to be fixed, then this can 
+                                             // That needs to be fixed, then this can
                                              // be removed.
   /// The serialization method.
   friend class boost::serialization::access;
@@ -130,7 +130,8 @@ inline Zp<p> operator - ( const Zp<p> & x) {
 template < Prime p >
 inline Zp<p> inverse (const Zp<p> & x) {
 	// First, invert rhs. We use repeated squaring.
-	int64_t sqr = x . value (); 
+	int64_t sqr = x . value ();
+	if (sqr == 0) return Zp<p> ( 0 );
 	int64_t inv = 1;
 	int64_t p0 = p - 2;
 	while ( p0 ) {
@@ -160,14 +161,14 @@ inline Zp<p> operator - (const Zp<p> & lhs, const Zp<p> & rhs) {
 template < Prime p >
 inline Zp<p> operator * (const Zp<p> & lhs, const Zp<p> & rhs) {
 	return Zp<p> ( lhs . value () * rhs . value () );
-  
+
 }
 
 template < Prime p >
 inline Zp<p> operator / (const Zp<p> & lhs, const Zp<p> & rhs) {
 	return lhs * inverse ( rhs );
 }
-  
+
 } // namespace chomp
 
 
