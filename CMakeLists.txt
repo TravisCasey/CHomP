@@ -1,5 +1,5 @@
-cmake_minimum_required (VERSION 2.6) 
-project (CHomP) 
+cmake_minimum_required (VERSION 3.21)
+project (CHomP)
 
 #########
 # rpath #
@@ -7,7 +7,7 @@ project (CHomP)
 
 set(CMAKE_MACOSX_RPATH 1)
 set(CMAKE_SKIP_BUILD_RPATH  FALSE)
-set(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE) 
+set(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE)
 set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 list(FIND CMAKE_PLATFORM_IMPLICIT_LINK_DIRECTORIES "${CMAKE_INSTALL_PREFIX}/lib" isSystemDir)
@@ -20,7 +20,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/.install/
 # Flags #
 #########
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -ftemplate-depth=2048")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -ftemplate-depth=2048")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O0 -fprofile-arcs -ftest-coverage")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3 -DNDEBUG" )
 
@@ -28,7 +28,7 @@ set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3 -DNDEBUG" )
 # Packages #
 ############
 
-find_package(Boost 1.58.0 REQUIRED COMPONENTS chrono system thread serialization)
+find_package(Boost 1.74.0 REQUIRED COMPONENTS chrono system thread serialization)
 find_package(Threads)
 
 # The next line fixes an issue with Anaconda interfering with X11
@@ -42,22 +42,22 @@ find_package(GMP REQUIRED)
 # Include Directories #
 #######################
 
-include_directories ( 
+include_directories (
   ${CMAKE_SOURCE_DIR}/include
-  /usr/local/include 
-  /opt/local/include 
-  ${Boost_INCLUDE_DIRS} 
-  ${USER_INCLUDE_PATH} 
-  ${X11_INCLUDE_DIR} 
+  /usr/local/include
+  /opt/local/include
+  ${Boost_INCLUDE_DIRS}
+  ${USER_INCLUDE_PATH}
+  ${X11_INCLUDE_DIR}
   )
 
 #######################
 # Library Directories #
 #######################
 
-link_directories ( 
-  ${USER_LIBRARY_PATH} 
-  /usr/local/lib 
+link_directories (
+  ${USER_LIBRARY_PATH}
+  /usr/local/lib
   /opt/local/lib )
 
 ###########
