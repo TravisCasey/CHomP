@@ -48,8 +48,7 @@ JLCXX_MODULE define_Field_module(jlcxx::Module& mod)
             wrapped.module().set_override_module(jl_base_module);
             wrapped.method("==", [](const WrappedT& lhs, const WrappedT& rhs){return lhs == rhs;});
             wrapped.method("==", [](const WrappedT& lhs, const int& rhs){return lhs == rhs;});
-            wrapped.method("!=", [](const WrappedT& lhs, const WrappedT& rhs){return lhs != rhs;});
-            wrapped.method("!=", [](const WrappedT& lhs, const int& rhs){return lhs != rhs;});
+            wrapped.method("==", [](const int& lhs, const WrappedT& rhs){return rhs == lhs;});
             wrapped.method("-", [](const WrappedT& d){return -d;});
             wrapped.method("+", [](const WrappedT& lhs, const WrappedT& rhs){return lhs + rhs;});
             wrapped.method("-", [](const WrappedT& lhs, const WrappedT& rhs){return lhs - rhs;});
