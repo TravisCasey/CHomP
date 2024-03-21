@@ -8,6 +8,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <stdint.h>
+#include <stdexcept>
 
 #include <boost/serialization/serialization.hpp>
 #include <boost/serialization/nvp.hpp>
@@ -50,12 +51,11 @@ public:
   }
   void integrity ( void ) {
     if ( (x > LongGone) || (-x > LongGone) ) {
-      std::cout << "INTEGER OVERFLOW.\n";
-      exit(1);
+      throw std::overflow_error("Long instance integer overflow");
     }
   }
 
-  Long balanced_value ( void ) const {
+  int64_t balanced_value ( void ) const {
     return x;
   }
 
@@ -151,12 +151,12 @@ public:
     return false;
   }
 
-  GMP_Integer balanced_value ( void ) const {
+  mpz_class balanced_value ( void ) const {
     return x;
   }
 
   GMP_Integer operator - ( void ) const {
-    return mpz_class(-x);
+    return GMP_Integer(-x);
   }
 
   GMP_Integer & operator += ( const GMP_Integer & rhs ) {
@@ -175,19 +175,19 @@ public:
   }
 
   GMP_Integer operator + ( const GMP_Integer & rhs ) const {
-    return mpz_class(x + rhs . x);
+    return GMP_Integer(x + rhs . x);
   }
 
   GMP_Integer operator - ( const GMP_Integer & rhs ) const {
-    return mpz_class(x - rhs . x);
+    return GMP_Integer(x - rhs . x);
   }
 
   GMP_Integer operator * ( const GMP_Integer & rhs ) const {
-    return mpz_class(x * rhs . x);
+    return GMP_Integer(x * rhs . x);
   }
 
   GMP_Integer operator / ( const GMP_Integer & rhs ) const {
-    return mpz_class(x / rhs . x);
+    return GMP_Integer(x / rhs . x);
   }
 
   bool operator == ( const GMP_Integer & rhs ) const {
